@@ -84,7 +84,7 @@ values."
                                     ;; c-c++
                                     disaster clang-format
                                     ;;helm-gtags
-                                    ;;helm-flx
+                                    helm-flx
                                     helm-cscope semantic srefactor stickyfunc-enhance
                                     ;;python
                                     hy-mode pyenv pyenv-mode pytest py-yapf semantic xcscope

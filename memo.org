@@ -1,0 +1,3 @@
+* spacemacs problems
+** a void function problem fix
+   https://github.com/syl20bnr/spacemacs/pull/7564/commits/6872c02dbaf01873b3b8c63490f687f63a7a8299
