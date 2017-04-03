@@ -1,4 +1,4 @@
-(defun ssh (args)
+(defun myssh (args)
   "Connect to a remote host by SSH."
   (interactive "sssh ")
   (let ((switches (split-string-and-unquote args)))
