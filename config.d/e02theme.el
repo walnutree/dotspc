@@ -11,11 +11,3 @@
 
 (global-hl-line-mode -1)
 
-(defun my/unhighlight-all-in-buffer ()
-    "Remove all highlights made by `hi-lock' from the current buffer.
-The same result can also be be achieved by \\[universal-argument] \\[unhighlight-regexp]."
-    (interactive)
-    (unhighlight-regexp t))
-
-(my-set-evil-states-key '(normal) (kbd "SPC o h") 'highlight-symbol-at-point)
-(my-set-evil-states-key '(normal) (kbd "SPC o u") 'my/unhighlight-all-in-buffer)
