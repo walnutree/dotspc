@@ -28,7 +28,9 @@
 The same result can also be be achieved by \\[universal-argument] \\[unhighlight-regexp]."
   (interactive)
   ;; remove line hightlights
+  (spacemacs/toggle-line-numbers)
   (remove-overlays (point-min) (point-max))
+  (spacemacs/toggle-line-numbers)
   ;; regex hightlights removal
   (unhighlight-regexp t))
 
