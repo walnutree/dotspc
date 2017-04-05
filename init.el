@@ -41,6 +41,7 @@ values."
      (c-c++ :variables c-c++-enable-clang-support t)
      auto-completion
      go
+     version-control
      git
      better-defaults
      ;;csharp
