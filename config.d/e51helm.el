@@ -20,3 +20,4 @@
 
 (my-set-evil-states-key '(normal) (kbd "SPC o s") 'helm-gtags-select)
 (my-set-evil-states-key '(normal) (kbd "SPC o f") 'helm-find)
+(my-set-evil-states-key '(normal) (kbd "SPC o i") 'helm-gid)
