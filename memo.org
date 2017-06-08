@@ -4,3 +4,6 @@
 
 * git commands
 ** git config --global core.pager cat   # global disable git pager
+** submodules (https://git-scm.com/book/en/v2/Git-Tools-Submodules)
+*** git submodule add https://github.com/chaconinc/DbConnector
+*** git clone --recursive https://github.com/chaconinc/MainProject

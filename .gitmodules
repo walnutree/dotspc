@@ -1,0 +1,3 @@
+[submodule "lisp/symbol-overlay"]
+	path = lisp/symbol-overlay
+	url = https://github.com/wolray/symbol-overlay.git

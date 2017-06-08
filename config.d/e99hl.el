@@ -56,6 +56,56 @@ The same result can also be be achieved by \\[universal-argument] \\[unhighlight
       (overlay-put overlay-highlight 'face '(:background "lightyellow"))
       (overlay-put overlay-highlight 'line-highlight-overlay-marker t))))
 
-(my-set-evil-states-key '(normal) (kbd "SPC o h") 'highlight-symbol-at-point)
+;; (my-set-evil-states-key '(normal) (kbd "SPC o h") 'highlight-symbol-at-point)
 (my-set-evil-states-key '(normal) (kbd "SPC o l") 'highlight-or-dehighlight-line)
 (my-set-evil-states-key '(normal) (kbd "SPC o u") 'my/unhighlight-all-in-buffer)
+
+;; symbol overlay package for highlight
+(load "../lisp/symbol-overlay/symbol-overlay.el")
+
+(defun my/symbol-overlay-toggle (symbol)
+  (unless (minibufferp)
+    (let* ((keyword (symbol-overlay-assoc symbol)))
+      (if keyword
+          (progn
+            (symbol-overlay-remove keyword)
+            (symbol-overlay-put-temp-in-window))
+        (symbol-overlay-put-all symbol)))))
+
+(setq symbol-overlay-map nil)
+
+(defun symbol-overlay-get-symbol (&optional string noerror)
+    "Get the symbol at point.
+If STRING is non-nil, `regexp-quote' STRING rather than the symbol.
+If NOERROR is non-nil, just return nil when no symbol is found."
+    (let ((symbol (or string (thing-at-point 'symbol))))
+      (if symbol (regexp-quote symbol)
+        (unless noerror (user-error "No symbol at point")))))
+
+(defun my/symbol-overlay-put-dwim ()
+  "Toggle all overlays of symbol at point."
+  (interactive)
+  (if (not mark-active)
+      (symbol-overlay-put)
+    (my/symbol-overlay-toggle
+     (symbol-overlay-get-symbol (filter-buffer-substring (mark) (point)) nil))
+    (if (functionp 'evil-force-normal-state)
+        (evil-force-normal-state)
+      (deactivate-mark))))
+
+(defun my/symbol-overlay-put-on-overlay()
+  (interactive)
+  (if mark-active
+      (my/symbol-overlay-put-dwim)
+    (let ((overlays (find-overlays-specifying 'symbol (point))))
+      (if overlays
+          (let ((keyword (symbol-overlay-assoc
+                          (overlay-get (car overlays) 'symbol))))
+            (symbol-overlay-remove keyword))))))
+
+(setq symbol-overlay-map
+      (let ((map (make-sparse-keymap)))
+        (define-key map (kbd "SPC o h") 'my/symbol-overlay-put-on-overlay)
+        map))
+
+(my-set-evil-states-key '(normal) (kbd "SPC o h") 'my/symbol-overlay-put-dwim)

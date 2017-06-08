@@ -14,4 +14,3 @@
         ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/")))
 (setq package-archives '(("gnu"   . "http://elpa.emacs-china.org/gnu/")
           ("melpa" . "http://elpa.emacs-china.org/melpa/")))
- 
