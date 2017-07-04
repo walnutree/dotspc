@@ -5,5 +5,19 @@
 * git commands
 ** git config --global core.pager cat   # global disable git pager
 ** submodules (https://git-scm.com/book/en/v2/Git-Tools-Submodules)
-*** git submodule add https://github.com/chaconinc/DbConnector
-*** git clone --recursive https://github.com/chaconinc/MainProject
+*** create submodule
+    git submodule add /tmp/cr
+*** set submodule branch
+    git config -f .gitmodules submodule.DbConnector.branch stable
+*** clone with submodules
+    git clone --recursive /tmp/prepo tt1
+*** pull new submodules
+    git pull --recurse-submodules
+    or ...
+    git pull
+    git submodule update --init dd/cr
+*** update submodule to its head
+    git submodule update --remote
+*** checkout a specific commit from parent workspace
+    git submodule update --checkout cr
+    git checkout 0783dc0b2a61dbb56a3ca818f6dafe0d946608c3
