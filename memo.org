@@ -21,3 +21,7 @@
 *** checkout a specific commit from parent workspace
     git submodule update --checkout cr
     git checkout 0783dc0b2a61dbb56a3ca818f6dafe0d946608c3
+** gitflow
+*** support branch and hotfix
+    git flow hotfix start 12356 support/v1s   #this can't done in magit (see magit-gitflow.el)
+    git flow hotfix finish 12356  #this can be done in magit
