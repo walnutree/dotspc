@@ -25,3 +25,25 @@
 *** support branch and hotfix
     git flow hotfix start 12356 support/v1s   #this can't done in magit (see magit-gitflow.el)
     git flow hotfix finish 12356  #this can be done in magit
+*** fixs for base branch of hotfix
+--- magit-gitflow.el.bak	2017-07-05 22:47:35.763924000 +0800
++++ magit-gitflow.el	2017-07-26 11:29:01.786619000 +0800
+@@ -531,12 +531,17 @@
+                        (string-remove-prefix prefix (magit-read-remote-branch "Release" "origin")))))
+
+
++(defun magit-gitflow-base-branch()
++  (let* ((prefix (magit-gitflow-get-config-key "prefix.support"))
++         (branch (magit-get-current-branch)))
++    (if (string-prefix-p prefix branch) branch "master"))
++  )
+ ;;
+ ;; git flow HOTFIX
+ ;;
+ (defun magit-gitflow-hotfix-start (version)
+   (interactive "sHotfix name: ")
+-  (magit-run-gitflow "hotfix" "start" magit-current-popup-args version))
++  (magit-run-gitflow "hotfix" "start" magit-current-popup-args version (magit-gitflow-base-branch)))
+
+ (defun magit-gitflow-hotfix-finish ()
+   (interactive)
