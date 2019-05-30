@@ -32,6 +32,7 @@ values."
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
+     php
      markdown
      org
      html
@@ -69,7 +70,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(smart-tab bookmark+ keyfreq company-irony flycheck-irony)
+   dotspacemacs-additional-packages '(smart-tab keyfreq company-irony flycheck-irony)
    ;; A list of packages that will not be install and loaded.
    dotspacemacs-excluded-packages '(eldoc
                                     smartparens
